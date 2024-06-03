@@ -181,7 +181,7 @@ extern NSBundle *uYouPlusBundle();
 
     YTSettingsSectionItem *copySettings = [%c(YTSettingsSectionItem)
         itemWithTitle:IS_ENABLED(@"replaceCopyandPasteButtons_enabled") ? LOC(@"EXPORT_SETTINGS") : LOC(@"COPY_SETTINGS")
-        titleDescription:LOC(@"COPY_SETTINGS_DESC")
+        titleDescription:IS_ENABLED(@"replaceCopyandPasteButtons_enabled") ? LOC(@"EXPORT_SETTINGS_DESC") : LOC(@"COPY_SETTINGS_DESC")
         accessibilityIdentifier:nil
         detailTextBlock:nil
         selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
