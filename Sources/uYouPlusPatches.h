@@ -65,8 +65,8 @@
 + (instancetype)deserializeFromString:(NSString*)string;
 @end
 
-@interface YTICommand : GPBMessage
-@end
+// @interface YTICommand : GPBMessage
+// @end
 
 @interface ELMPBCommand : GPBMessage
 @end
