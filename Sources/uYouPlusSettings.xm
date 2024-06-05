@@ -209,10 +209,13 @@ extern NSBundle *uYouPlusBundle();
                         [settingsString appendFormat:@"%@: %@\n", key, value];
                     }
                 }
+            if (settingsString.length > 0) {
                 UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.text"] inMode:UIDocumentPickerModeExportToService];
                 documentPicker.delegate = (id<UIDocumentPickerDelegate>)self;
                 documentPicker.allowsMultipleSelection = NO;
-                [settingsViewController presentViewController:documentPicker animated:YES completion:nil];
+                [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:documentPicker animated:YES completion:nil];
+            }
+            return YES;
             } else {
                 // Copy Settings functionality (default behavior)
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -242,7 +245,8 @@ extern NSBundle *uYouPlusBundle();
                 UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.text"] inMode:UIDocumentPickerModeImport];
                 documentPicker.delegate = (id<UIDocumentPickerDelegate>)self;
                 documentPicker.allowsMultipleSelection = NO;
-                [settingsViewController presentViewController:documentPicker animated:YES completion:nil];
+                [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:documentPicker animated:YES completion:nil];
+                return YES;
             } else {
                 // Paste Settings functionality (default behavior)
                 UIAlertController *confirmPasteAlert = [UIAlertController alertControllerWithTitle:LOC(@"CONFIRM_PASTE_TITLE") message:LOC(@"CONFIRM_PASTE_MESSAGE") preferredStyle:UIAlertControllerStyleAlert];
