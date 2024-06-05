@@ -87,9 +87,7 @@
 @end
 
 // YTTapToSeek - https://github.com/bhackel/YTTapToSeek
-@interface YTMainAppVideoPlayerOverlayViewController : UIViewController
-- (CGFloat)totalTime;
-@end
+// Header has been moved to https://github.com/arichornlover/YouTubeHeader/blob/main/YTMainAppVideoPlayerOverlayViewController.h
 
 // Enable Premium logo - @bhackel
 @interface YTITopbarLogoRenderer : NSObject
