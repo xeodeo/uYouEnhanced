@@ -79,3 +79,6 @@
 	path = Tweaks/YouTimeStamp
 	url = https://github.com/arichornlover/YouTimeStamp.git
 	branch = wip
+[submodule "Tweaks/protobuf"]
+	path = Tweaks/protobuf
+	url = https://github.com/protocolbuffers/protobuf.git
