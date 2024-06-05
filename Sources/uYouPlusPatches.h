@@ -1,5 +1,11 @@
+#import <UIKit/UIActivityViewController.h>
+#import <YouTubeHeader/YTUIUtils.h>
 #import <YouTubeHeader/YTColorPalette.h>
 #import <YouTubeHeader/YTCommonColorPalette.h>
+#import "Tweaks/protobuf/objectivec/GPBDescriptor.h"
+#import "Tweaks/protobuf/objectivec/GPBMessage.h"
+#import "Tweaks/protobuf/objectivec/GPBUnknownField.h"
+#import "Tweaks/protobuf/objectivec/GPBUnknownFieldSet.h"
 #import "uYouPlus.h"
 
 @interface PlayerManager : NSObject
