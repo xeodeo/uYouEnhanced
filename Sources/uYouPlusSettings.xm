@@ -1400,8 +1400,6 @@ extern NSBundle *uYouPlusBundle();
                 [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
             }
         }
-        [settingsViewController reloadData];
-        SHOW_RELAUNCH_YT_SNACKBAR;
     }
 }
 
