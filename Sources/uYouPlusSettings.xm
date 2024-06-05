@@ -85,23 +85,6 @@ NSArray *copyKeys = @[
     /* TWEAK YTUHD Keys */ @"EnableVP9", @"AllVP9"
 ];
 
-- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
-    if (urls.count > 0) {
-        NSString *fileContents = [NSString stringWithContentsOfURL:urls.firstObject encoding:NSUTF8StringEncoding error:nil];
-        NSArray *lines = [fileContents componentsSeparatedByString:@"\n"];
-        for (NSString *line in lines) {
-            NSArray *components = [line componentsSeparatedByString:@": "];
-            if (components.count == 2) {
-                NSString *key = components[0];
-                NSString *value = components[1];
-                [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
-            }
-        }
-        [settingsViewController reloadData];
-        SHOW_RELAUNCH_YT_SNACKBAR;
-    }
-}
-
 static int contrastMode() {
     NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSComparisonResult result1 = [appVersion compare:@"17.33.2" options:NSNumericSearch];
@@ -1404,6 +1387,25 @@ extern NSBundle *uYouPlusBundle();
         [settingsViewController setSectionItems:sectionItems forCategory:uYouPlusSection title:@"uYouEnhanced" titleDescription:LOC(@"TITLE DESCRIPTION") headerHidden:YES];
 }
 
+// File Manager (Paste Settings)
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    if (urls.count > 0) {
+        NSString *fileContents = [NSString stringWithContentsOfURL:urls.firstObject encoding:NSUTF8StringEncoding error:nil];
+        NSArray *lines = [fileContents componentsSeparatedByString:@"\n"];
+        for (NSString *line in lines) {
+            NSArray *components = [line componentsSeparatedByString:@": "];
+            if (components.count == 2) {
+                NSString *key = components[0];
+                NSString *value = components[1];
+                [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+            }
+        }
+        [settingsViewController reloadData];
+        SHOW_RELAUNCH_YT_SNACKBAR;
+    }
+}
+
+//
 - (void)updateSectionForCategory:(NSUInteger)category withEntry:(id)entry {
     if (category == uYouPlusSection) {
         [self updateTweakSectionWithEntry:entry];
