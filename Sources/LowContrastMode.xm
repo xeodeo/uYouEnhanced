@@ -13,7 +13,7 @@ static BOOL customContrastMode() {
 
 UIColor *lcmHexColor;
 
-%group gLowContrastMode // Low Contrast Mode v1.5.2 (Compatible with only YouTube v17.33.2-v17.38.10)
+%group gLowContrastMode // Low Contrast Mode v1.6.0 BETA (Compatible with only YouTube v17.33.2-v17.38.10)
 %hook UIColor
 + (UIColor *)whiteColor { // Dark Theme Color
          return [UIColor colorWithRed: 0.56 green: 0.56 blue: 0.56 alpha: 1.00];
@@ -246,9 +246,18 @@ UIColor *lcmHexColor;
     [modifiedAttributes setObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     %orig(modifiedAttributes, state);
 }
+- (void)setCustomTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state {
+    NSMutableDictionary *customAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+    [customAttributes setObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    %orig(customAttributes, state);
+}
 %end
 %hook UIButton
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
+    color = [UIColor whiteColor];
+    %orig(color, state);
+}
+- (void)setCustomTitleColor:(UIColor *)color forState:(UIControlState)state {
     color = [UIColor whiteColor];
     %orig(color, state);
 }
@@ -258,6 +267,11 @@ UIColor *lcmHexColor;
     NSMutableDictionary *modifiedAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
     [modifiedAttributes setObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     %orig(modifiedAttributes, state);
+}
+- (void)setCustomTitleTextAttributes:(NSDictionary *)attributes forState:(UIControlState)state {
+    NSMutableDictionary *customAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+    [customAttributes setObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    %orig(customAttributes, state);
 }
 %end
 %hook NSAttributedString
