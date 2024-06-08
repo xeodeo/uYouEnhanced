@@ -472,12 +472,12 @@ extern NSBundle *uYouPlusBundle();
         LOC(@"HIDE_FULLSCREEN_ACTION_BUTTONS_DESC"), 
         @"hideFullscreenActions_enabled",
         ({
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone || [[[UIApplication sharedApplication] valueForKey:@"shortVersionString"] floatValue] >= 19.22.6) {
                 [[NSUserDefaults standardUserDefaults] setBool:enable forKey:@"hideFullscreenActions_enabled"];
                 SHOW_RELAUNCH_YT_SNACKBAR;
                 return YES;
             } else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incompatibile" message:@"This Option is Incompatible on an iPad Device." preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"iPad is using an Incompatible YouTube Version" message:@"This Option is only compatible with YouTube version 19.22.6 and higher on iPad devices." preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                 [alert addAction:okAction];
                 [settingsViewController presentViewController:alert animated:YES completion:nil];
