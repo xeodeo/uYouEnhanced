@@ -55,6 +55,7 @@ static int contrastMode() {
 @interface YTVarispeedSwitchController : NSObject
 @end
 
+/* duplicate error patch
 @interface YTPlayerOverlayManager : NSObject
 @property (nonatomic, assign) float currentPlaybackRate;
 @property (nonatomic, strong, readonly) YTVarispeedSwitchController *varispeedController;
@@ -63,6 +64,7 @@ static int contrastMode() {
 - (void)setCurrentPlaybackRate:(float)rate;
 - (void)setPlaybackRate:(float)rate;
 @end
+*/
 
 %hook YTPlayerOverlayManager
 %property (nonatomic, assign) float currentPlaybackRate;
