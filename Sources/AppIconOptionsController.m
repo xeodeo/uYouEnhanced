@@ -114,7 +114,6 @@
     }
 
     NSString *iconName = self.appIcons[self.selectedIconIndex];
-    NSString *iconPath = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
     
     UIImage *iconImage = [UIImage imageNamed:iconName];
     UIImage *roundedIconImage = [self createRoundedImage:iconImage size:CGSizeMake(120, 120)]; // Adjust size as needed
