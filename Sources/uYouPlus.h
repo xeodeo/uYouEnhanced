@@ -25,6 +25,7 @@
 #import <YouTubeHeader/YTWatchNextResultsViewController.h>
 #import <YouTubeHeader/YTPlayerOverlay.h>
 #import <YouTubeHeader/YTPlayerOverlayProvider.h>
+#import <YouTubeHeader/YTMainAppVideoPlayerOverlayView.h>
 #import <YouTubeHeader/YTReelWatchPlaybackOverlayView.h>
 #import <YouTubeHeader/YTInlinePlayerBarContainerView.h>
 #import <YouTubeHeader/YTInnerTubeCollectionViewController.h>
