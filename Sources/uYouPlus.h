@@ -35,6 +35,7 @@
 #import <YouTubeHeader/YTIStringRun.h>
 #import <YouTubeHeader/YTWatchViewController.h>
 #import <YouTubeHeader/YTIPivotBarRenderer.h>
+#import <YouTubeHeader/YTPlayerOverlayManager.h> // Fixes uYou crash when trying to play video (#1422)
 
 // Hide buttons under the video player by @PoomSmart
 #import <YouTubeHeader/ASCollectionElement.h>
