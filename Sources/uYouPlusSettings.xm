@@ -472,7 +472,7 @@ extern NSBundle *uYouPlusBundle();
         LOC(@"HIDE_FULLSCREEN_ACTION_BUTTONS_DESC"), 
         @"hideFullscreenActions_enabled",
         ({
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone || [[[UIApplication sharedApplication] valueForKey:@"shortVersionString"] floatValue] >= 19.22.6) {
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [[[UIApplication sharedApplication] valueForKey:@"shortVersionString"] compare:@"19.22.6" options:NSNumericSearch] != NSOrderedAscending) {
                 [[NSUserDefaults standardUserDefaults] setBool:enable forKey:@"hideFullscreenActions_enabled"];
                 SHOW_RELAUNCH_YT_SNACKBAR;
                 return YES;
@@ -1328,7 +1328,7 @@ extern NSBundle *uYouPlusBundle();
                     return YES;
                 }]
             ];
-            YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:LOC(@"VERSION_SPOOFER_TITLE") pickerSectionTitle:nil rows:rows selectedItemIndex:appVersionSpoofer() parentResponder:[self parentResponder]];
+            YTSettingsPickerViewController *picker = [[%c(YTSettingsPickerViewController) alloc] initWithNavTitle:LOC(@"VERSION_SPOOFER_SELECTOR") pickerSectionTitle:nil rows:rows selectedItemIndex:appVersionSpoofer() parentResponder:[self parentResponder]];
             [settingsViewController pushViewController:picker];
             return YES;
         }
