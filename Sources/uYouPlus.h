@@ -161,10 +161,6 @@
 - (void)confirmAlertDidPressConfirm;
 @end
 
-@interface YTMainAppControlsOverlayView : UIView
-@property (readonly, nonatomic) YTQTMButton *watchCollapseButton;
-@end
-
 @interface YTTransportControlsButtonView : UIView
 @end
 
