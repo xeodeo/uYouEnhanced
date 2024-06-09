@@ -76,7 +76,7 @@
     cell.textLabel.text = iconName;
 
     UIImage *iconImage = [UIImage imageNamed:iconName];
-    cell.imageView.image = [self resizeImage:iconImage newSize:CGSizeMake(40, 40)];
+    cell.imageView.image = [self createRoundedImage:iconImage size:CGSizeMake(40, 40)];
 
     if (indexPath.row == self.selectedIconIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -119,12 +119,12 @@
     UIImage *iconImage = [UIImage imageNamed:iconName];
     UIImage *roundedIconImage = [self createRoundedImage:iconImage size:CGSizeMake(120, 120)]; // Adjust size as needed
     
-    // Copy the image to the main app bundle
+    // Save the image to the main app bundle
     NSData *imageData = UIImagePNGRepresentation(roundedIconImage);
-    NSString *newIconPath = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
+    NSString *newIconPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@_custom", iconName] ofType:@"png"];
     [imageData writeToFile:newIconPath atomically:YES];
 
-    [[UIApplication sharedApplication] setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
+    [[UIApplication sharedApplication] setAlternateIconName:[NSString stringWithFormat:@"%@_custom", iconName] completionHandler:^(NSError * _Nullable error) {
         if (error) {
             NSLog(@"Error setting alternate icon: %@", error.localizedDescription);
             [self showAlertWithTitle:@"Error" message:@"Failed to set alternate icon"];
