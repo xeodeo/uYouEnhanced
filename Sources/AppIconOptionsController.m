@@ -114,6 +114,15 @@
     }
 
     NSString *iconName = self.appIcons[self.selectedIconIndex];
+    NSString *iconPath = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
+    
+    UIImage *iconImage = [UIImage imageNamed:iconName];
+    UIImage *roundedIconImage = [self createRoundedImage:iconImage size:CGSizeMake(120, 120)]; // Adjust size as needed
+    
+    // Copy the image to the main app bundle
+    NSData *imageData = UIImagePNGRepresentation(roundedIconImage);
+    NSString *newIconPath = [[NSBundle mainBundle] pathForResource:iconName ofType:@"png"];
+    [imageData writeToFile:newIconPath atomically:YES];
 
     [[UIApplication sharedApplication] setAlternateIconName:iconName completionHandler:^(NSError * _Nullable error) {
         if (error) {
@@ -127,22 +136,24 @@
     }];
 }
 
-- (UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)size {
+- (UIImage *)createRoundedImage:(UIImage *)image size:(CGSize)size {
     UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, size.width, size.height) cornerRadius:size.width * 0.1]; // Adjust the corner radius as needed
+    [path addClip];
     [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *roundedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    return resizedImage;
+    return roundedImage;
 }
 
-- (UIImage *)resizeImage:(UIImage *)image newSize:(CGSize)newSize {
+- (UIImage *)resizeImage:(UIImage *)image newSize:(CGSize)newSize { // Back Button
     UIGraphicsBeginImageContextWithOptions(newSize, NO, [UIScreen mainScreen].scale);
     [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
-}
+ }
 
 - (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     dispatch_async(dispatch_get_main_queue(), ^{
